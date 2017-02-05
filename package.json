@@ -51,7 +51,7 @@
     "url": "https://tripometer.herokuapp.com",
     "sampleUrl": "https://tripometerdev.herokuapp.com",
     "header": {
-      "title": "INtroduction",
+      "title": "Introduction",
       "filename": "res/header.md"
     },
     "template": {

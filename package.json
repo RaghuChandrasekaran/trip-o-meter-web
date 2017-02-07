@@ -34,7 +34,7 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{js}",
-      "!**/index.js"
+      "!src/index.js"
     ],
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
@@ -60,13 +60,15 @@
   },
   "dependencies": {
     "apidoc": "^0.17.5",
+    "axios": "^0.15.3",
     "backpack-core": "0.0.7",
     "body-parser": "^1.16.0",
     "cors": "^2.8.1",
     "cross-env": "^3.1.4",
     "express": "^4.14.0",
     "if-env": "^1.0.0",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "xml2js": "^0.4.17"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",

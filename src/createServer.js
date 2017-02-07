@@ -2,6 +2,7 @@ import express from 'express';
 import bodyparser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
+import price from './routes/price';
 
 export default () => {
   const app = express();
@@ -22,6 +23,8 @@ export default () => {
   if (showCoverage) {
     app.use('/coverage', express.static(COVERAGE_FOLDER));
   }
+
+  app.use('/price', price);
 
   app.use(morgan(logLevel));
 

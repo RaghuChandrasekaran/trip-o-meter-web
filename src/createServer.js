@@ -2,7 +2,7 @@ import express from 'express';
 import bodyparser from 'body-parser';
 import cors from 'cors';
 import morgan from 'morgan';
-import price from './routes/price';
+import cost from './routes/cost';
 
 export default () => {
   const app = express();
@@ -24,17 +24,42 @@ export default () => {
     app.use('/coverage', express.static(COVERAGE_FOLDER));
   }
 
-  app.use('/price', price);
-
   app.use(morgan(logLevel));
 
+  app.use('/cost', cost);
+
   /**
-   * @api {get} /status Get Status
-   * @apiName Status
+ * @apiDefine BadRequest
+ *
+ * @apiError BadRequest The request had invalid parameters.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "status": "error",
+ *       "message": "reason"
+ *     }
+ */
+   /**
+ * @apiDefine ServerFailure
+ *
+ * @apiError ServerFailure Internal Server Issue
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 500 Bad Request
+ *     {
+ *       "status": "error",
+ *       "message": "Server Failure"
+ *     }
+ */
+
+  /**
+   * @api {get} /status Get Server Status
+   * @apiName GetStatus
    * @apiGroup Status
    *
    *
-   * @apiSuccess {String} status status of the response.
+   * @apiSuccess {String} status status of the server
    *
    * @apiSuccessExample Success-Response:
    *     HTTP/1.1 200 OK
@@ -42,14 +67,9 @@ export default () => {
    *       "status": "success"
    *     }
    *
-   * @apiError Error Server Failure.
+   * @apiError ServerFailure Internal Server Issue
    *
-   * @apiErrorExample Error-Response:
-   *     HTTP/1.1 500 Server Failure
-   *     {
-   *       "status": "error",
-   *       "message":"Server Failure"
-   *     }
+   * @apiUse ServerFailure
    */
   app.get('/status', (req, res, next) => {
     try {

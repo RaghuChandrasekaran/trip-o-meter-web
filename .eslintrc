@@ -1,6 +1,21 @@
 {
     "parser": "babel-eslint",
     "extends": "airbnb",
+    "plugins": [
+        "import"
+    ],
+    "settings": {
+        "import/resolver": {
+            "babel-module": {
+                "root": [
+                    "./src"
+                ],
+                "alias": {
+                    "Utilities": "./src/utils"
+                }
+            }
+        }
+    },
     "globals": {
         "__DEV__": true
     },

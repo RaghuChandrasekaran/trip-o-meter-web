@@ -1,5 +1,18 @@
 {
     "presets": [
         "backpack-core/babel"
+    ],
+    "plugins": [
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./src"
+                ],
+                "alias": {
+                    "Utilities": "./src/utils"
+                }
+            }
+        ]
     ]
 }

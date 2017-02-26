@@ -1,7 +1,11 @@
 import axios from 'axios';
+import Logger from 'Utilities/logger';
 
+const LOGGER = new Logger(' : Fetch-Library');
 function get(url) {
-  return axios.get(url).then(res => res.data);
+  LOGGER.debug(`Getting data from ${url}`);
+  return axios.get(url)
+    .then(res => res.data);
 }
 
 export default { get };

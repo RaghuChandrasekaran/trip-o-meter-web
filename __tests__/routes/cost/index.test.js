@@ -12,7 +12,7 @@ describe('Cost Price Route Test', () => {
         } catch (error) {
             expect(res.status).toBe(200);
             expect(res.type).toBe('application/json');
-            expect(res.body).toEqual({ status: "success", countries: ['India'] });
+            expect(res.body.data).toEqual({ countries: ['India'] });
         }
     });
 

@@ -10,8 +10,7 @@ describe('India Price Route Test', () => {
             .get('/cost/IN/metro');
         expect(res.status).toBe(200);
         expect(res.type).toBe('application/json');
-        expect(res.body.status).toBe('success');
-        expect(res.body.metro instanceof Array).toBe(true);
+        expect(res.body.metro.length > 0).toBe(true);
     });
 
     it('Check route capital', async () => {
@@ -19,8 +18,6 @@ describe('India Price Route Test', () => {
             .get('/cost/IN/capital');
         expect(res.status).toBe(200);
         expect(res.type).toBe('application/json');
-        expect(res.body.status).toBe('success');
-        expect(res.body.capital instanceof Array).toBe(true);
     });
 
     it('Check route states', async () => {
@@ -28,8 +25,7 @@ describe('India Price Route Test', () => {
             .get('/cost/IN/states');
         expect(res.status).toBe(200);
         expect(res.type).toBe('application/json');
-        expect(res.body.status).toBe('success');
-        expect(res.body.state instanceof Array).toBe(true);
+        expect(res.body.states.length > 0).toBe(true);
     });
 
     it('Check route state/:stateName', async () => {
@@ -37,8 +33,7 @@ describe('India Price Route Test', () => {
             .get('/cost/IN/state/Bihar');
         expect(res.status).toBe(200);
         expect(res.type).toBe('application/json');
-        expect(res.body.status).toBe('success');
-        expect(res.body.cities instanceof Array).toBe(true);
+        expect(res.body.Bihar.length > 0).toBe(true);
     });
 
     it('Default route', async () => {
@@ -48,7 +43,7 @@ describe('India Price Route Test', () => {
         } catch (error) {
             expect(res.status).toBe(200);
             expect(res.type).toBe('application/json');
-            expect(res.body).toEqual({ status: "success" });
+            expect(res.body.undefined).toEqual("Data not found");
         }
     });
 
@@ -59,7 +54,7 @@ describe('India Price Route Test', () => {
         } catch (error) {
             expect(res.status).toBe(500);
             expect(res.type).toBe('application/json');
-            expect(res.body).toEqual({ status: "error" });
+            expect(res.body.error.message).toEqual('Key can\'t be blank');
         }
     });
 

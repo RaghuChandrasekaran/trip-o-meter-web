@@ -22,12 +22,11 @@
     "rules": {
         "max-len": [
             1,
-            70,
+            75,
             2,
             {
                 "ignoreComments": true
             }
-        ],
-        "no-console": 0
+        ]
     }
 }

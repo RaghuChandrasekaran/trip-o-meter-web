@@ -51,14 +51,14 @@ function createUrls() {
 }
 
 async function populatePriceMap() {
-  const dataPromises = [];
-  LOGGER.info('Populating response price map for India');
-  createUrls().forEach((value, key) => {
-    LOGGER.debug(`Type: ${key} - URL: ${value}`);
-    const fetchPromise = getData(value, key);
-    dataPromises.push(fetchPromise);
-  });
   try {
+    const dataPromises = [];
+    LOGGER.info('Populating response price map for India');
+    createUrls().forEach((value, key) => {
+      LOGGER.debug(`Type: ${key} - URL: ${value}`);
+      const fetchPromise = getData(value, key);
+      dataPromises.push(fetchPromise);
+    });
     const responses = await Promise.all(dataPromises);
     responses.forEach((value) => {
       LOGGER.debug(`Inserting data into map : ${value.key}`);
@@ -68,6 +68,7 @@ async function populatePriceMap() {
   } catch (error) {
     LOGGER.error(error);
   }
+  return priceMap;
 }
 
 function getPrice(key) {

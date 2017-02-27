@@ -18,7 +18,7 @@ describe('Basic Setup Test', () => {
             .get('/status');
         expect(res.status).toBe(200);
         expect(res.type).toBe('application/json');
-        expect(res.body).toEqual({ status: "success" });
+        expect(res.body.status).toEqual("Success");
     });
 
     it('Check error handling', async () => {
@@ -28,7 +28,7 @@ describe('Basic Setup Test', () => {
         } catch (error) {
             expect(res.status).toBe(500);
             expect(res.type).toBe('application/json');
-            expect(res.body).toEqual({ status: "error" });
+            expect(res.body.error.message).toEqual("Testing error");
         }
     });
 

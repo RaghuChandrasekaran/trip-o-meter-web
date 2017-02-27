@@ -1,15 +1,20 @@
 import express from 'express';
 import bodyparser from 'body-parser';
 import cors from 'cors';
-import morgan from 'morgan';
+import loggerMiddleware from 'Utilities/request-logger';
+import Logger from 'Utilities/logger';
+import respond from 'Utilities/response-gen';
+import cost from './routes/cost';
 
 export default () => {
   const app = express();
   const DOCS_STATIC_FOLDER = 'docs';
-  const COVERAGE_FOLDER = 'coverage/lcov-report';
-  const logLevel = __DEV__ ? 'dev' : 'short';
   const NODE_ENV = process.env.NODE_ENV;
   const showCoverage = ['development', 'test'].includes(NODE_ENV);
+  const COVERAGE_FOLDER = showCoverage ? 'coverage/lcov-report' : '';
+  const LOGGER = new Logger(' : Create-Server');
+
+  LOGGER.info('App is starting...');
 
   app.use(cors());
   app.use(bodyparser.json());
@@ -17,43 +22,68 @@ export default () => {
     extended: true,
   }));
 
-  app.use('/', express.static(DOCS_STATIC_FOLDER));
+  app.use('/docs', express.static(DOCS_STATIC_FOLDER));
 
-  if (showCoverage) {
-    app.use('/coverage', express.static(COVERAGE_FOLDER));
-  }
+  app.use('/coverage', express.static(COVERAGE_FOLDER));
 
-  app.use(morgan(logLevel));
+  app.use(loggerMiddleware.assignId);
+  app.use(loggerMiddleware.requestLogger);
+
+  app.use('/cost', cost);
 
   /**
-   * @api {get} /status Get Status
-   * @apiName Status
+ * @apiDefine BadRequest
+ *
+ * @apiError BadRequest The request had invalid parameters.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad Request
+ *     {
+ *       "error":{
+ *          "message":"Reason"
+ *         }
+ *     }
+ */
+  /**
+  * @apiDefine ServerFailure
+  *
+  * @apiError ServerFailure Internal Server Issue
+  *
+  * @apiErrorExample Error-Response:
+  *     HTTP/1.1 500 Internal Server Failure
+  *    {
+  *      "error":{
+ *          "message":"Reason"
+ *         }
+  *     }
+  */
+
+  /**
+   * @api {get} /status Get Server Status
+   * @apiName GetStatus
    * @apiGroup Status
    *
    *
-   * @apiSuccess {String} status status of the response.
+   * @apiSuccess {String} status status of the server
    *
    * @apiSuccessExample Success-Response:
    *     HTTP/1.1 200 OK
-   *     {
-   *       "status": "success"
-   *     }
+   *    {
+   *      status:"Success"
+   *    }
    *
-   * @apiError Error Server Failure.
+   * @apiError ServerFailure Internal Server Issue
    *
-   * @apiErrorExample Error-Response:
-   *     HTTP/1.1 500 Server Failure
-   *     {
-   *       "status": "error",
-   *       "message":"Server Failure"
-   *     }
+   * @apiUse ServerFailure
    */
   app.get('/status', (req, res, next) => {
     try {
       if (req.query.error) {
-        throw new Error('Testing error');
+        const error = new Error('Testing error');
+        throw error;
       } else {
-        return res.status(200).send({ status: 'success' });
+        const response = { status: 'Success' };
+        return respond.successResponse(res, response);
       }
     } catch (error) {
       return next(error);
@@ -64,19 +94,15 @@ export default () => {
   // four parameters even though 'next' is not used
   // eslint-disable-next-line
   app.use((err, req, res, next) => {
-    console.log(err);
-    const message = err.info || 'Server Failure';
+    LOGGER.error(err);
+    const message = err.message || 'Server Failure';
     const stack = __DEV__ ? err.stack : 'Check Logs';
-    const response = {
-      status: 'error',
-      message,
-      stack,
-    };
-    res.status(500).send(response);
+    const response = { error: { message, stack } };
+    return respond.errorResponse(res, response, 500);
   });
 
   app.use((req, res) => {
-    res.status(404).send("Sorry can't find that!");
+    respond.errorResponse(res, "Sorry can't find that!", 404);
   });
 
   return app;

@@ -50,6 +50,15 @@ function createUrls() {
   return urlsMap;
 }
 
+function populateCities() {
+  getAllStates().forEach((state) => {
+    const cities = priceMap.get(state);
+    cities.forEach((city) => {
+      priceMap.set(city.city, city);
+    });
+  });
+}
+
 async function populatePriceMap() {
   try {
     const dataPromises = [];
@@ -65,6 +74,7 @@ async function populatePriceMap() {
       priceMap.set(value.key, value.data);
     });
     priceMap.set('states', getAllStates());
+    populateCities();
   } catch (error) {
     LOGGER.error(error);
   }

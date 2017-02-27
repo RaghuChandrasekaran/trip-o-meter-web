@@ -36,6 +36,14 @@ describe('India Price Route Test', () => {
         expect(res.body.Bihar.length > 0).toBe(true);
     });
 
+    it('Check route city/:cityName', async () => {
+        const res = await request(app.listen())
+            .get('/cost/IN/city/Sheohar');
+        expect(res.status).toBe(200);
+        expect(res.type).toBe('application/json');
+        expect(res.body.Sheohar.length > 0).toBe(true);
+    });
+
     it('Default route', async () => {
         try {
             const res = await request(app.listen())

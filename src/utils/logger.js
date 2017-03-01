@@ -1,6 +1,7 @@
 import winston from 'winston';
 
-const defaultLvl = __DEV__ ? 'debug' : 'info';
+const TEST_ENV = process.env.NODE_ENV === 'test';
+const defaultLvl = (__DEV__ && !TEST_ENV) ? 'debug' : 'info';
 const LOG_LEVEL = process.env.LOG_LEVEL || defaultLvl;
 
 winston.level = LOG_LEVEL;

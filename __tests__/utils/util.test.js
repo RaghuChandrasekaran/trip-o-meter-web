@@ -1,5 +1,6 @@
-import fetch from '../../src/utils/fetch';
-import parser from '../../src/utils/xml-parser';
+import fetch from 'Utilities/fetch';
+import parser from 'Utilities/xml-parser';
+import scheduler from 'Utilities/scheduler';
 
 describe('Utils Test Suite', () => {
 
@@ -31,6 +32,27 @@ describe('Utils Test Suite', () => {
         } catch (error) {
             expect(error instanceof Error).toBe(true);
             expect(error.message).toEqual(`Unexpected close tag\nLine: 0\nColumn: 60\nChar: >`);
+        }
+    });
+
+    it('Scheduler: Check whether its a valid Job & running', async () => {
+        try {
+            let testFunction=() => console.log("JOB*****JOB");
+            let job=scheduler(testFunction,'* * * * *');
+            job.start();
+            expect(job.running).toBe(true);
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
+    it('Scheduler: Handle error when creating job', async () => {
+        try {
+            let testFunction=() => console.log("JOB*****JOB");
+            let job=scheduler(testFunction,'invalid');
+        } catch (error) {
+            expect(error instanceof Error).toBe(true);
+            expect(error.message).toEqual(`Unknown alias: inv`);
         }
     });
 

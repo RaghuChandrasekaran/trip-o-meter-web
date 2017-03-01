@@ -4,6 +4,7 @@ import cors from 'cors';
 import loggerMiddleware from 'Utilities/request-logger';
 import Logger from 'Utilities/logger';
 import respond from 'Utilities/response-gen';
+import { job as priceScrapper } from './tasks/priceScrapper';
 import cost from './routes/cost';
 
 export default () => {
@@ -104,6 +105,8 @@ export default () => {
   app.use((req, res) => {
     respond.errorResponse(res, "Sorry can't find that!", 404);
   });
+
+  priceScrapper.start();
 
   return app;
 };

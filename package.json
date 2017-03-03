@@ -21,13 +21,19 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test jest --forceExit",
+    "test": "npm run test:run && npm run test:coverage",
+    "test:run":"concurrently 'npm run test:server' 'npm run test:client'",
+    "test:server": "cross-env NODE_ENV=test jest --forceExit",
+    "test:client": "node scripts/client test",
+    "test:coverage": "node scripts/coverage",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "cross-env NODE_ENV=development backpack dev",
-    "start:prod": "cross-env NODE_ENV=production backpack build && node ./build/main.js",
-    "heroku-start": "npm run test && npm run docs && npm start",
+    "start:dev": "concurrently 'npm run start:server' 'npm run start:client'",
+    "start:server": "cross-env NODE_ENV=development backpack dev",
+    "start:client": "node scripts/client start",
+    "start:prod": "npm run build && npm run docs && node ./build/main.js",
+    "heroku-start": "npm test; npm start",
     "docs": "apidoc -i src/ -o docs/ && cp -rf res/favicon.ico docs/img",
-    "build": "backpack build"
+    "build": "cross-env NODE_ENV=production backpack build && node scripts/client run build"
   },
   "jest": {
     "testEnvironment": "node",
@@ -36,8 +42,12 @@
       "src/**/*.{js}",
       "!src/index.js"
     ],
+    "coverageDirectory": "./server-coverage/",
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.js?(x)"
     ],
     "globals": {
       "__DEV__": true
@@ -77,6 +87,7 @@
     "babel-eslint": "^7.1.1",
     "babel-jest": "^19.0.0",
     "babel-plugin-module-resolver": "^2.5.0",
+    "concurrently": "^3.4.0",
     "coveralls": "^2.11.15",
     "eslint": "^3.16.1",
     "eslint-config-airbnb": "^14.0.0",
@@ -85,6 +96,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
+    "istanbul": "^0.4.5",
     "jest-cli": "^19.0.2",
     "supertest": "^3.0.0"
   }

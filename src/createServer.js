@@ -10,9 +10,10 @@ import cost from './routes/cost';
 export default () => {
   const app = express();
   const DOCS_STATIC_FOLDER = 'docs';
+  const COVERAGE_FOLDER = 'coverage/lcov-report';
+  const CLIENT_FOLDER = 'client/build';
   const NODE_ENV = process.env.NODE_ENV;
   const showCoverage = ['development', 'test'].includes(NODE_ENV);
-  const COVERAGE_FOLDER = showCoverage ? 'coverage/lcov-report' : '';
   const LOGGER = new Logger(' : Create-Server');
 
   LOGGER.info('App is starting...');
@@ -23,9 +24,15 @@ export default () => {
     extended: true,
   }));
 
+  if (NODE_ENV === 'production') {
+    app.use('/', express.static(CLIENT_FOLDER));
+  }
+
   app.use('/docs', express.static(DOCS_STATIC_FOLDER));
 
-  app.use('/coverage', express.static(COVERAGE_FOLDER));
+  if (showCoverage) {
+    app.use('/coverage', express.static(COVERAGE_FOLDER));
+  }
 
   app.use(loggerMiddleware.assignId);
   app.use(loggerMiddleware.requestLogger);

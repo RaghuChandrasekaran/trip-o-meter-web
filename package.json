@@ -25,7 +25,7 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:dev": "cross-env NODE_ENV=development backpack dev",
     "start:prod": "cross-env NODE_ENV=production backpack build && node ./build/main.js",
-    "heroku-start": "npm run test && npm run docs && npm start",
+    "heroku-start": "npm run docs && npm start",
     "docs": "apidoc -i src/ -o docs/ && cp -rf res/favicon.ico docs/img",
     "build": "backpack build"
   },

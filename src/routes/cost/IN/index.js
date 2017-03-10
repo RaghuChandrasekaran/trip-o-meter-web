@@ -23,6 +23,7 @@ const resolver = {
 
 /**
   * @api {get} /cost/IN/metro Cost in Metro Cities
+  * @apiVersion 1.0.0
   * @apiName GetMetro
   * @apiGroup India
   *
@@ -44,6 +45,7 @@ router.get('/metro', ctrlHndler(fetch, resolver.metro));
 
 /**
   * @api {get} /cost/IN/metro Cost in Capitals
+  * @apiVersion 1.0.0
   * @apiName GetCapital
   * @apiGroup India
   *
@@ -66,6 +68,7 @@ router.get('/capital', ctrlHndler(fetch, resolver.capital));
 
 /**
   * @api {get} /cost/IN/states Get all States
+  * @apiVersion 1.0.0
   * @apiName GetState
   * @apiGroup India
   *
@@ -88,6 +91,7 @@ router.get('/states', ctrlHndler(fetch, resolver.states));
 
 /**
   * @api {get} /cost/IN/state/:stateName Cost in Cities
+  * @apiVersion 1.0.0
   * @apiName GetCitiesInState
   * @apiGroup India
   * @apiParam {String} stateName Name of state (Must match name received in /states)
@@ -110,6 +114,7 @@ router.get('/state/:stateName', ctrlHndler(fetch, resolver.stateName));
 
 /**
   * @api {get} /cost/IN/city/:cityName Cost in City
+  * @apiVersion 1.0.0
   * @apiName GetPriceInCity
   * @apiGroup India
   * @apiParam {String} cityName Name of City

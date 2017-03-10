@@ -1,6 +1,6 @@
 {
   "name": "trip-o-meter-web",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "engines": {
     "node": "6.9.4",
     "npm": "4.1.2"
@@ -45,7 +45,7 @@
   },
   "apidoc": {
     "name": "Trip-O-Meter",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "API used in Trip-O-Meter app",
     "title": "Trip-O-Meter",
     "url": "https://tripometer.herokuapp.com",

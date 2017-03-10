@@ -61,6 +61,7 @@ export default () => {
 
   /**
    * @api {get} /status Get Server Status
+   * @apiVersion 1.0.0
    * @apiName GetStatus
    * @apiGroup Status
    *

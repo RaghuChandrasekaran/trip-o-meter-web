@@ -23,7 +23,7 @@ export default () => {
     extended: true,
   }));
 
-  app.use('/docs', express.static(DOCS_STATIC_FOLDER));
+  app.use('/', express.static(DOCS_STATIC_FOLDER));
 
   app.use('/coverage', express.static(COVERAGE_FOLDER));
 
@@ -61,6 +61,7 @@ export default () => {
 
   /**
    * @api {get} /status Get Server Status
+   * @apiVersion 1.0.0
    * @apiName GetStatus
    * @apiGroup Status
    *

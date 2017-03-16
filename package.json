@@ -1,6 +1,6 @@
 {
   "name": "trip-o-meter-web",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "engines": {
     "node": "6.9.4",
     "npm": "4.1.2"
@@ -25,7 +25,7 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:dev": "cross-env NODE_ENV=development backpack dev",
     "start:prod": "cross-env NODE_ENV=production backpack build && node ./build/main.js",
-    "heroku-start": "npm run test && npm run docs && npm start",
+    "heroku-start": "npm run docs && npm start",
     "docs": "apidoc -i src/ -o docs/ && cp -rf res/favicon.ico docs/img",
     "build": "backpack build"
   },
@@ -45,7 +45,7 @@
   },
   "apidoc": {
     "name": "Trip-O-Meter",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "API used in Trip-O-Meter app",
     "title": "Trip-O-Meter",
     "url": "https://tripometer.herokuapp.com",

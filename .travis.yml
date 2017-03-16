@@ -5,6 +5,7 @@ branches:
   only:
   - master
   - develop
+  - /^release*/
 after_success:
   - 'cat ./coverage/lcov.info | ./node_modules/.bin/coveralls'
 deploy:
@@ -15,3 +16,4 @@ deploy:
   app:
     master: tripometer
     develop: tripometerdev
+    release/atlantis: tripometerbeta

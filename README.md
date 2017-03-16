@@ -4,12 +4,12 @@
 
 [![Build Status](https://travis-ci.org/RaghuChandrasekaran/trip-o-meter-web.svg?branch=master)](https://travis-ci.org/RaghuChandrasekaran/trip-o-meter-web)
 [![Coverage Status](https://coveralls.io/repos/github/RaghuChandrasekaran/trip-o-meter-web/badge.svg?branch=master)](https://coveralls.io/github/RaghuChandrasekaran/trip-o-meter-web?branch=master)
-[![Dependency Status](https://img.shields.io/david/RaghuChandrasekaran/trip-o-meter-web.svg?style=flat-square)](https://david-dm.org/RaghuChandrasekaran/trip-o-meter-web.svg)
+[![Dependency Status](https://img.shields.io/david/RaghuChandrasekaran/trip-o-meter-web.svg?style=flat-square)](https://david-dm.org/RaghuChandrasekaran/trip-o-meter-web)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTION.md#pull-requests)
 
 Trip-O-Meter is an app to calculate fuel cost for a trip and provide other helpful things when planning for a trip.
 
-This repo maintains the web version of Trip-O-Meter android app & also has API for fetching fuel prices.
+This repo is the web version of Trip-O-Meter android app & also hosts API for fetching fuel prices.
 
 API created for usage in [Trip-O-Meter Android App](https://github.com/midhunhk/trip-o-meter/)
 

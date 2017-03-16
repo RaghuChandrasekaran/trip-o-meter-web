@@ -23,7 +23,7 @@ export default () => {
     extended: true,
   }));
 
-  app.use('/docs', express.static(DOCS_STATIC_FOLDER));
+  app.use('/', express.static(DOCS_STATIC_FOLDER));
 
   app.use('/coverage', express.static(COVERAGE_FOLDER));
 

@@ -2,8 +2,8 @@
 
 # Trip-O-Meter-Web
 
-[![Build Status](https://travis-ci.org/RaghuChandrasekaran/trip-o-meter-web.svg?branch=master)](https://travis-ci.org/RaghuChandrasekaran/trip-o-meter-web)
-[![Coverage Status](https://coveralls.io/repos/github/RaghuChandrasekaran/trip-o-meter-web/badge.svg?branch=master)](https://coveralls.io/github/RaghuChandrasekaran/trip-o-meter-web?branch=master)
+[![Build Status](https://travis-ci.org/RaghuChandrasekaran/trip-o-meter-web.svg?branch=develop)](https://travis-ci.org/RaghuChandrasekaran/trip-o-meter-web)
+[![Coverage Status](https://coveralls.io/repos/github/RaghuChandrasekaran/trip-o-meter-web/badge.svg?branch=develop)](https://coveralls.io/github/RaghuChandrasekaran/trip-o-meter-web?branch=master)
 [![Dependency Status](https://img.shields.io/david/RaghuChandrasekaran/trip-o-meter-web.svg?style=flat-square)](https://david-dm.org/RaghuChandrasekaran/trip-o-meter-web)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTION.md#pull-requests)
 

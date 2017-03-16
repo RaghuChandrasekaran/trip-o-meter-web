@@ -1,16 +1,18 @@
+import Logger from 'Utilities/logger';
 import createServer from './createServer';
 
 const port = process.env.PORT || 3000;
+const LOGGER = new Logger(' : App Starter');
 const app = createServer();
 
 app.listen(port, (err) => {
   if (err) {
-    console.error(err);
+    LOGGER.error(err);
   }
 
   if (__DEV__) {
-    console.log('App in development mode');
+    LOGGER.debug('App in development mode');
   }
 
-  console.log(`App listening on port ${port}`);
+  LOGGER.info(`App listening on port ${port}`);
 });

@@ -1,6 +1,6 @@
 {
   "name": "trip-o-meter-web",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "engines": {
     "node": "6.9.4",
     "npm": "4.1.2"
@@ -25,7 +25,7 @@
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:dev": "cross-env NODE_ENV=development backpack dev",
     "start:prod": "cross-env NODE_ENV=production backpack build && node ./build/main.js",
-    "heroku-start": "npm run test && npm run docs && npm start",
+    "heroku-start": "npm run docs && npm start",
     "docs": "apidoc -i src/ -o docs/ && cp -rf res/favicon.ico docs/img",
     "build": "backpack build"
   },
@@ -34,7 +34,7 @@
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{js}",
-      "!**/index.js"
+      "!src/index.js"
     ],
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx)$"
@@ -45,13 +45,13 @@
   },
   "apidoc": {
     "name": "Trip-O-Meter",
-    "version": "0.0.0",
+    "version": "1.0.0",
     "description": "API used in Trip-O-Meter app",
     "title": "Trip-O-Meter",
     "url": "https://tripometer.herokuapp.com",
     "sampleUrl": "https://tripometerdev.herokuapp.com",
     "header": {
-      "title": "INtroduction",
+      "title": "Getting Started",
       "filename": "res/header.md"
     },
     "template": {
@@ -60,25 +60,32 @@
   },
   "dependencies": {
     "apidoc": "^0.17.5",
-    "backpack-core": "0.0.7",
-    "body-parser": "^1.16.0",
+    "axios": "^0.15.3",
+    "backpack-core": "^0.2.0",
+    "body-parser": "^1.16.1",
     "cors": "^2.8.1",
+    "cron": "^1.2.1",
     "cross-env": "^3.1.4",
     "express": "^4.14.0",
     "if-env": "^1.0.0",
-    "morgan": "^1.7.0"
+    "morgan": "^1.8.1",
+    "uuid": "^3.0.1",
+    "winston": "^2.3.1",
+    "xml2js": "^0.4.17"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.1",
-    "babel-jest": "^18.0.0",
+    "babel-jest": "^19.0.0",
+    "babel-plugin-module-resolver": "^2.5.0",
     "coveralls": "^2.11.15",
-    "eslint": "^3.14.1",
+    "eslint": "^3.16.1",
     "eslint-config-airbnb": "^14.0.0",
-    "eslint-loader": "^1.6.1",
+    "eslint-import-resolver-babel-module": "^3.0.0",
+    "eslint-loader": "^1.6.3",
     "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^3.0.2",
-    "eslint-plugin-react": "^6.9.0",
-    "jest-cli": "^18.1.0",
-    "supertest": "^2.0.1"
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
+    "jest-cli": "^19.0.2",
+    "supertest": "^3.0.0"
   }
 }

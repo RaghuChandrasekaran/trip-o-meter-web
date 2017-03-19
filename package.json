@@ -22,7 +22,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "npm run test:run && npm run test:coverage",
-    "test:run":"concurrently 'npm run test:server' 'npm run test:client'",
+    "test:run": "concurrently 'npm run test:server' 'npm run test:client'",
     "test:server": "cross-env NODE_ENV=test jest --forceExit",
     "test:client": "node scripts/client test",
     "test:coverage": "node scripts/coverage",
@@ -59,7 +59,7 @@
     "description": "API used in Trip-O-Meter app",
     "title": "Trip-O-Meter",
     "url": "https://tripometer.herokuapp.com",
-    "sampleUrl": "https://tripometerdev.herokuapp.com",
+    "sampleUrl": "https://tripometer.herokuapp.com",
     "header": {
       "title": "Getting Started",
       "filename": "res/header.md"

@@ -1,8 +1,5 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import Menu from './Menu';
-import Card from './Card';
-import Navigation from '../containers/NavigationContainer';
 
 const styles = {
   title: {
@@ -23,16 +20,18 @@ const styles = {
   },
 };
 
-const App = () => (
+const Title = ({ title }) => (<span style={styles.title}>{title}</span>);
+
+const App = ({ title, Content, Navigation, Menu }) => (
   <div style={styles.app} >
     <AppBar
-      title={<span style={styles.title}>Trip O Meter</span>}
+      title={<Title title={title} />}
       showMenuIconButton={false}
-      iconElementRight={<Menu />} />
+      iconElementRight={Menu} />
     <div style={styles.content}>
-      <div style={styles.center}><Card /></div>
+      <div style={styles.center}>{Content}</div>
     </div>
-    <Navigation />
+    {Navigation}
   </div>
 );
 

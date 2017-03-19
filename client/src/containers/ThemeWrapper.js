@@ -45,7 +45,7 @@ function ThemeWrapper(AppComponent) {
         render() {
             return (
                 <MuiThemeProvider muiTheme={muiTheme}>
-                    <AppComponent />
+                    <AppComponent {...this.props} />
                 </MuiThemeProvider>
             );
         }

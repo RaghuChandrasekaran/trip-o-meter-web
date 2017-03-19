@@ -21,14 +21,14 @@ const styles = {
     },
 };
 
-const Content = () => (
+const Content = ({ page }) => (
     <Card style={styles.cardHeight}>
         <CardMedia style={styles.center}>
             <img src={grayLogo} alt="gray_logo" style={styles.img}></img>
         </CardMedia>
         <CardTitle title="Feature under development" />
         <CardText>
-            This page is under construction.Please come back soon...
+            This page {page} is under construction.Please come back soon...
         </CardText>
     </Card>
 );

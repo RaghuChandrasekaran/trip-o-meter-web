@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Calc from 'material-ui/svg-icons/maps/directions-car';
 import Price from 'material-ui/svg-icons/editor/attach-money';
 import Expenses from 'material-ui/svg-icons/action/account-balance-wallet';
@@ -9,13 +10,21 @@ class NavigationContainer extends Component {
         super(props);
         this.state = { selectedIndex: 0, };
         this.handleItemClick = this.handleItemClick.bind(this);
+        this.indexList = ['calc', 'price', 'expenses'];
         this.items = [
-            { icon: <Calc />, label: "Calc" },
-            { icon: <Price />, label: "Price" },
-            { icon: <Expenses />, label: "Expenses" }];
+            {
+                icon: <Link to="/" ><Calc /></Link>, label: "Calc", to: 'calc'
+            },
+            {
+                icon: <Link to="/price" ><Price /></Link>, label: "Price", to: 'price'
+            },
+            {
+                icon: <Link to="/expenses" ><Expenses /></Link>, label: "Expenses", to: 'expenses'
+            }];
     }
 
-    handleItemClick(index) {
+    handleItemClick(path) {
+        let index = this.indexList.indexOf(path);
         this.setState({ selectedIndex: index });
     }
 

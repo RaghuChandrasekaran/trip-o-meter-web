@@ -1,3 +1,4 @@
+import path from 'path';
 import express from 'express';
 import bodyparser from 'body-parser';
 import cors from 'cors';
@@ -23,10 +24,6 @@ export default () => {
   app.use(bodyparser.urlencoded({
     extended: true,
   }));
-
-  if (NODE_ENV === 'production') {
-    app.use('/', express.static(CLIENT_FOLDER));
-  }
 
   app.use('/docs', express.static(DOCS_STATIC_FOLDER));
 
@@ -98,6 +95,17 @@ export default () => {
     }
   });
 
+  if (NODE_ENV === 'production') {
+    app.use('/', express.static(CLIENT_FOLDER));
+
+    app.get('/*', (req, res) => {
+      // eslint-disable-next-line
+      const location = path.resolve(`${__dirname}/../${CLIENT_FOLDER}/index.html`);
+      LOGGER.info(location);
+      res.sendFile(location);
+    });
+  }
+
   // disabled eslint as express error handler required calling
   // four parameters even though 'next' is not used
   // eslint-disable-next-line
@@ -107,10 +115,6 @@ export default () => {
     const stack = __DEV__ ? err.stack : 'Check Logs';
     const response = { error: { message, stack } };
     return respond.errorResponse(res, response, 500);
-  });
-
-  app.use((req, res) => {
-    respond.errorResponse(res, "Sorry can't find that!", 404);
   });
 
   priceScrapper.start();

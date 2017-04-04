@@ -1,9 +1,11 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
+import { Link } from 'react-router-dom';
 
 const styles = {
   title: {
     cursor: 'pointer',
+    color:'white'
   },
   app: {
     display: 'flex',
@@ -20,7 +22,7 @@ const styles = {
   },
 };
 
-const Title = ({ title }) => (<span style={styles.title}>{title}</span>);
+const Title = ({ title }) => (<Link to="/"><span style={styles.title}>{title}</span></Link>);
 
 const App = ({ title, Content, Navigation, Menu }) => (
   <div style={styles.app} >

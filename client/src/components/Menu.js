@@ -3,10 +3,10 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import MenuItem from 'material-ui/MenuItem';
+import { Link } from 'react-router-dom';
 
-const Menu = (props) => (
+const Menu = () => (
     <IconMenu
-        {...props}
         iconButtonElement={
             <IconButton><MoreVertIcon /></IconButton>
         }
@@ -14,7 +14,7 @@ const Menu = (props) => (
         anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
     >
         <MenuItem primaryText="API Docs" />
-        <MenuItem primaryText="About" />
+        <Link to="/about"><MenuItem primaryText="About" /></Link>
     </IconMenu>
 );
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Calc from 'material-ui/svg-icons/maps/directions-car';
 import Price from 'material-ui/svg-icons/editor/attach-money';
 import Expenses from 'material-ui/svg-icons/action/account-balance-wallet';
@@ -13,26 +13,35 @@ class NavigationContainer extends Component {
         this.indexList = ['calc', 'price', 'expenses'];
         this.items = [
             {
-                icon: <Link to="/" ><Calc /></Link>, label: "Calc", to: 'calc'
+                icon:<Calc />, label: "Calc", to: 'calc'
             },
             {
-                icon: <Link to="/price" ><Price /></Link>, label: "Price", to: 'price'
+                icon:<Price />, label: "Price", to: 'price'
             },
             {
-                icon: <Link to="/expenses" ><Expenses /></Link>, label: "Expenses", to: 'expenses'
+                icon:<Expenses />, label: "Expenses", to: 'expenses'
             }];
     }
 
     handleItemClick(path) {
         let index = this.indexList.indexOf(path);
         this.setState({ selectedIndex: index });
+        this.props.history.push(path);
+    }
+
+    componentWillReceiveProps(nextProps){
+        let path=nextProps.location.pathname.replace('/','');
+        let index = path.length > 0 ? this.indexList.indexOf(path):0;
+        this.setState({ selectedIndex: index });
     }
 
     render() {
         return (
+            this.state.selectedIndex >= 0?
             <Navigation handleClick={this.handleItemClick} items={this.items} selectedIndex={this.state.selectedIndex} />
+            :false
         );
     }
 }
 
-export default NavigationContainer;
+export default withRouter(NavigationContainer);

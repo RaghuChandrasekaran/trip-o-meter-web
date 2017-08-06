@@ -2,7 +2,7 @@
   "name": "trip-o-meter-web",
   "version": "1.0.0",
   "engines": {
-    "node": "6.9.4",
+    "node": "6.11.1",
     "npm": "4.1.2"
   },
   "description": "API for fetching fuel prices and web version of trip-o-meter",

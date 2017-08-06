@@ -1,10 +1,29 @@
 import React, { Component } from 'react';
 import ThemeWrapper from './ThemeWrapper';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Menu from '../components/Menu';
-import Navigation from '../containers/NavigationContainer';
+import AppContent from '../components/AppContent';
+import AppBar from '../components/AppBar';
+import Navigation from './NavigationContainer';
 import Content from './RouteContainer';
-import App from '../components/App';
+
+const styles = {
+    app: {
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
+        width: '100%',
+        padding: 0
+    }
+};
+
+const App = ({ children }) => {
+    return (
+        <div style={styles.app} >
+            <AppBar title="Trip O Meter" />
+            {children}
+            <Navigation />
+        </div>);
+};
 
 const ThemedApp = ThemeWrapper(App);
 
@@ -12,7 +31,11 @@ class AppContainer extends Component {
     render() {
         return (
             <Router>
-                <ThemedApp title="Trip O Meter" Content={<Content />} Navigation={<Navigation />} Menu={<Menu />} />
+                <ThemedApp>
+                    <AppContent>
+                        <Content />
+                    </AppContent>
+                </ThemedApp>
             </Router>
         );
     }

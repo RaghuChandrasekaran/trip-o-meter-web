@@ -14,3 +14,13 @@ html,body {
 a{
   text-decoration: none;
 }
+
+.length-enter {
+  font-size:10px;
+  z-index: 1;
+}
+
+.length-enter.length-enter-active {
+  font-size:60px;
+  transition: font 400ms ease-in;
+}

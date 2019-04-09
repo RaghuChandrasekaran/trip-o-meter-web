@@ -1,4 +1,4 @@
-<img align="right" height="100" src="https://raw.githubusercontent.com/RaghuChandrasekaran/trip-o-meter-web/master/res/app_icon.png" />
+<img align="right" height="100" src="https://github.com/midhunhk/artwork/blob/master/TripOMeter/exp/app_icon.png" />
 
 # Trip-O-Meter-Web
 
@@ -39,10 +39,10 @@ axios.get('https://tripometer.herokuapp.com/cost/IN/metro')
 
 **Contributions are always welcome!**
 
-Please take a moment to review the [guidelines for contributing](CONTRIBUTING.md).
+Please take a moment to review the [guidelines for contributing](CONTRIBUTION.md).
 
-* [Pull requests](CONTRIBUTING.md#pull-requests)
-* [Development Process](CONTRIBUTING.md#development)
+* [Pull requests](CONTRIBUTION.md#pull-requests)
+* [Development Process](CONTRIBUTION.md#development)
 
 ## Release
 
